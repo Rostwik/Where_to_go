@@ -11,4 +11,4 @@ class Place(models.Model):
 
 class Image(models.Model):
     title = models.CharField(max_length=200)
-    picture = models.ImageField(upload_to='img', blank=True)
+    picture = models.ImageField(blank=True)
