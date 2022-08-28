@@ -1,36 +1,63 @@
 from django.shortcuts import render
 
+from places.models import Place, Image
+from django.http import Http404, HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404
+
 
 def index(request):
-    places_geojson = {
-        "type": "FeatureCollection",
-        "features": [
+    places = Place.objects.all()
+    features = []
+
+    for place in places:
+        features.append(
             {
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [37.62, 55.793676]
+                    "coordinates": [
+                        place.coordinate_lng,
+                        place.coordinate_lat
+                    ]
                 },
                 "properties": {
-                    "title": "«Легенды Москвы",
-                    "placeId": "moscow_legends",
+                    "title": place.title,
+                    "placeId": place.id,
                     "detailsUrl": "./static/places/moscow_legends.json"
                 }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [37.64, 55.753676]
-                },
-                "properties": {
-                    "title": "Крыши24.рф",
-                    "placeId": "roofs24",
-                    "detailsUrl": "./static/places/roofs24.json"
-                }
             }
-        ]
+        )
+
+    places_geojson = {
+        "type": "FeatureCollection",
+        "features": features
     }
 
     data = {"json": places_geojson}
     return render(request, "index.html", context=data)
+
+
+def places(request, id):
+    place = get_object_or_404(Place, id=id)
+
+    place_imgs = [img.picture.url for img in Image.objects.filter(title=place.title)]
+
+    place_detail = {
+        "title": place.title,
+        "imgs": place_imgs,
+        "description_short": place.description_short,
+        "description_long": place.description_long,
+        "coordinates": {
+            "lng": place.coordinate_lng,
+            "lat": place.coordinate_lat
+        }
+    }
+
+    return HttpResponse(
+        JsonResponse(
+            place_detail,
+            safe=False,
+            json_dumps_params={'ensure_ascii': False, 'indent': 2}
+        ),
+        content_type="application/json"
+    )
