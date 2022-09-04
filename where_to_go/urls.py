@@ -22,5 +22,5 @@ from where_to_go import views, settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('places/<int:id>/', views.places),
+    path('places/<int:id>/', views.places, name='api_place'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
