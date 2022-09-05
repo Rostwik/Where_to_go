@@ -1,3 +1,4 @@
+from adminsortable2.admin import SortableInlineAdminMixin, SortableAdminMixin, SortableTabularInline, SortableAdminBase
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
@@ -5,9 +6,9 @@ from django.utils.safestring import mark_safe
 from .models import Place, Image
 
 
-class PlaceInline(admin.TabularInline):
+class PlaceInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
-    ordering = ['position']
+    # ordering = ['position']
     extra = 0
     readonly_fields = ['get_preview']
     fields = ('picture', 'get_preview', 'position')
@@ -33,7 +34,7 @@ class PlaceInline(admin.TabularInline):
 
 
 @admin.register(Place)
-class PlaceAdmin(admin.ModelAdmin):
+class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [
         PlaceInline,
     ]
@@ -45,7 +46,7 @@ class PlaceAdmin(admin.ModelAdmin):
 @admin.register(Image)
 class PlaceAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'position', 'place'
+        'position', 'id',  'place'
     )
 
     ordering = ['place', 'position']
