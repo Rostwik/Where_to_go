@@ -20,7 +20,7 @@ secret_key = env.str('SECRET_KEY')
 allowed_hosts = env.list('ALLOWED_HOSTS')
 
 SECRET_KEY = secret_key
-DEBUG = env.bool('DEBUG', True)
+DEBUG = env.bool('DEBUG', False)
 ALLOWED_HOSTS = allowed_hosts
 
 BASE_DIR = Path(__file__).resolve().parent.parent
