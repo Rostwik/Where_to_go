@@ -16,10 +16,11 @@ from environs import Env
 env = Env()
 env.read_env()
 
-secret_key = env.str('SECRET_KEY')
+# secret_key = env.str('SECRET_KEY')
 allowed_hosts = env.list('ALLOWED_HOSTS')
 
-SECRET_KEY = secret_key
+SECRET_KEY = 'django-insecure-)cc@)vne6ce7q9&_7*-!qi1-)ja8@c9@+j!2(@zfwg+22f9akp'
+# SECRET_KEY = secret_key
 DEBUG = env.bool('DEBUG', False)
 ALLOWED_HOSTS = allowed_hosts
 
