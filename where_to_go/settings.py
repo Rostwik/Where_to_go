@@ -16,7 +16,7 @@ from environs import Env
 env = Env()
 env.read_env()
 
-secret_key = env.str('SECRET_KEY', '')
+secret_key = env.str('SECRET_KEY', 'none')
 allowed_hosts = env.list('ALLOWED_HOSTS', '')
 
 SECRET_KEY = secret_key
