@@ -60,7 +60,8 @@
 
         {% verbatim %}
           <h5 class="mb-3">{{ selectedPlace.title }}</h5>
-          <p>{{ selectedPlace.short_description }}</p>
+<!--          <div v-html="selectedPlace.short_description"></div>-->
+          {{ selectedPlace.short_description }}
         {% endverbatim %}
 
         <div id="place-photos" class="carousel slide mb-3 shadow" data-ride="carousel" data-interval="5000">

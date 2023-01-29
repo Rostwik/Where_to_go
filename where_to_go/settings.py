@@ -16,11 +16,11 @@ from environs import Env
 env = Env()
 env.read_env()
 
-secret_key = env.str('SECRET_KEY', 'none')
+secret_key = env.str('SECRET_KEY')
 allowed_hosts = env.list('ALLOWED_HOSTS', '')
 
 SECRET_KEY = secret_key
-DEBUG = env.bool('DEBUG', False)
+DEBUG = env.bool('DEBUG')
 ALLOWED_HOSTS = allowed_hosts
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -112,11 +112,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "static"),
     # '/var/www/static/',
 ]
 
