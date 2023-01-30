@@ -104,6 +104,10 @@ $python manage.py load_place 'url'
 url - link to json, see an example of such a link below:
 [url](https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/%D0%92%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4%20%D0%A0%D0%B0%D0%B4%D1%83%D0%B6%D0%BD%D1%8B%D0%B9.json)
 
+## Working demo version of the site
+
+[Where to Go](https://roronoazorostislav.pythonanywhere.com/)
+
 # Author
 
 * **Rostislav** - [Rostislav](https://github.com/Rostwik)
