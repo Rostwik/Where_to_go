@@ -19,7 +19,7 @@ class Command(BaseCommand):
         response = response.json()
 
         try:
-            obj, _ = Place.objects.get_or_create(
+            obj, created = Place.objects.get_or_create(
                 title=response['title'],
                 description_short=response['description_short'],
                 description_long=response['description_long'],
@@ -27,12 +27,12 @@ class Command(BaseCommand):
                 coordinate_lat=response['coordinates']['lat']
             )
 
-            for url in response['imgs']:
-                response = requests.get(url)
-                response.raise_for_status()
-                img = Image.objects.create(place=obj)
-
-                img.picture.save('new_place', ContentFile(response.content), save=True)
+            if created:
+                for url in response['imgs']:
+                    response = requests.get(url)
+                    response.raise_for_status()
+                    img = Image.objects.create(place=obj)
+                    img.picture.save('new_place', ContentFile(response.content), save=True)
 
         except Place.MultipleObjectsReturned:
             print('Такая достопримечательность уже имеется в бд')
