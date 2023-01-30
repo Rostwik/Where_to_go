@@ -9,8 +9,8 @@ For convenience, there is an HTML editor in the administrative access of the sit
 
 ![img.png](documentation/img.png)
 
-Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте Devman.
-Тестовые данные взяты с сайта KudaGo.
+The code is written for educational purposes — this is a lesson in a course on Python and web development on the Devman website.
+The test data is taken from the KudaGo website.
 
 ## Enviroments
 
@@ -74,25 +74,35 @@ python manage.py runserver
 To add a new location, click on the "Add" plus.
 
 - edit location
-  
-Заходим в список всех локаций, нажимаем на поле "Places".
+
+Go to the list of all locations, click on the "Places" field.
 ![img.png](documentation/edit_location.png)
-Выбираем необходимую локацию:
+Choosing the necessary location:
 ![img.png](documentation/edit_location_2.png)
-В нижней части интерфейса располоенные привязанные изображения,
-помимо добавления и замены изображений, можно менять их порядок,
-методом удерживания и перемещения поля:
+In the lower part of the interface, the linked images are located,
+in addition to adding and replacing images, you can change their order
+by holding and moving the field:
 ![img.png](documentation/edit_location_3.png)
 - add photos
 
-Чтобы добавить фотографии к конкретной локации необходимо их добавить и привязать к локации.
-Для этого необходимо зайти в интерфейс фотографий, нажав на "Images" на главной странице:
+To add photos to a specific location, you need to add them and link them to the location.
+To do this, go to the photos interface by clicking on "Images" on the main page:
 ![img.png](documentation/image.png)
 
-Далее выбрать локацию, для которой это изображение будет отображаться, выбрать изображение, 
-указать позцию следования в списке всех изобажений и нажать кнопку "Сохранить".
+Next, select the location for which this image will be displayed, select the image,
+specify the position of the sequence in the list of all images and click the "Save" button.
 ![img.png](documentation/image_2.png)
 
+## The function of adding a new attraction to the map
+
+For convenience, the possibility of adding a new attraction by link is implemented.
+
+```bash
+$python manage.py load_place 'url' 
+```
+
+url - link to json, see an example of such a link below:
+[url](https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/%D0%92%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4%20%D0%A0%D0%B0%D0%B4%D1%83%D0%B6%D0%BD%D1%8B%D0%B9.json)
 
 # Author
 
