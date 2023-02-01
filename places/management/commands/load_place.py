@@ -17,23 +17,24 @@ class Command(BaseCommand):
         response = requests.get(url)
         response.raise_for_status()
         response = response.json()
+        print(response)
 
         try:
             obj, created = Place.objects.get_or_create(
                 title=response['title'],
-                description_short=response['description_short'],
-                description_long=response['description_long'],
-                coordinate_lng=response['coordinates']['lng'],
-                coordinate_lat=response['coordinates']['lat']
+                defaults={
+                    'description_short': response['description_short'],
+                    'description_long': response['description_long'],
+                    'lon': response['coordinates']['lng'],
+                    'lat': response['coordinates']['lat']
+                }
             )
 
             if created:
                 for url in response['imgs']:
                     response = requests.get(url)
                     response.raise_for_status()
-                    img = Image.objects.create(place=obj)
-                    img.picture.save('new_place', ContentFile(response.content), save=True)
+                    Image.objects.create(place=obj).picture.save('new_place', ContentFile(response.content), save=True)
 
         except Place.MultipleObjectsReturned:
             print('Такая достопримечательность уже имеется в бд')
-

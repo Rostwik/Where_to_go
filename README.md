@@ -5,7 +5,7 @@ the locations of the additional attractions. When you click on the place marked 
 a description appears on the right side of the screen. The program provides the ability
 to add and edit attractions, as well as their detailed descriptions. 
 For convenience, there is an HTML editor in the administrative access of the site.
-[See example](https://python-scripts.com/virtualenv) of a working website.
+[See example](https://roronoazorostislav.pythonanywhere.com/admin/) of a working website.
 
 ![img.png](documentation/img.png)
 
@@ -15,9 +15,16 @@ The test data is taken from the KudaGo website.
 ## Enviroments
 
 - create the file .env and fill in this data:
-  - DEBUG
-  - SECRET_KEY
-  - ALLOWED_HOSTS
+  - DEBUG -
+    One of the main features of debug mode is the display of detailed error pages. If your app raises an exception when DEBUG is True, Django will display a detailed traceback, including a lot of metadata about your environment, such as all the currently defined Django settings (from settings.py)
+  - SECRET_KEY -
+    Default: '' (Empty string).
+    A secret key for a particular Django installation. This is used to provide cryptographic signing, and should be set to a unique, unpredictable value.
+    django-admin startproject automatically adds a randomly-generated SECRET_KEY to each new project.
+  - ALLOWED_HOSTS -
+    Default: [] (Empty list).
+    A list of strings representing the host/domain names that this Django site can serve. This is a security measure to prevent HTTP Host header attacks, which are possible even under many seemingly-safe web server configurations.
+    
 
 # For developers
 ## Installing
