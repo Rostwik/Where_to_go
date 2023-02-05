@@ -17,7 +17,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from where_to_go import views, settings
+from where_to_go import settings
+from places import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
