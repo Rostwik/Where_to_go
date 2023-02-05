@@ -16,12 +16,9 @@ from environs import Env
 env = Env()
 env.read_env()
 
-secret_key = env.str('SECRET_KEY')
-allowed_hosts = env.list('ALLOWED_HOSTS', '')
-
-SECRET_KEY = secret_key
+SECRET_KEY = env.str('SECRET_KEY')
 DEBUG = env.bool('DEBUG')
-ALLOWED_HOSTS = allowed_hosts
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', '')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
