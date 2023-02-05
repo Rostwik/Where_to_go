@@ -31,14 +31,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'places.apps.PlacesConfig',
     'adminsortable2',
+    "debug_toolbar",
     'tinymce',
 ]
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

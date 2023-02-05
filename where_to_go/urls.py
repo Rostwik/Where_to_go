@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 from where_to_go import settings
-from places import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('places/<int:id>/', views.places, name='api_place'),
+    path('', include('places.urls')),
+    path('places/<int:id>/', include('places.urls')),
     path('tinymce/', include('tinymce.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

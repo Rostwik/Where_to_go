@@ -39,7 +39,7 @@ def index(request):
 
 
 def places(request, id):
-    place = get_object_or_404(Place, id=id)
+    place = get_object_or_404(Place.objects.prefetch_related(), id=id)
 
     place_imgs = [img.picture.url for img in Image.objects.filter(place=place).order_by('-position')]
 
