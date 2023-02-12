@@ -41,24 +41,21 @@ def index(request):
 def places(request, id):
     place = get_object_or_404(Place.objects.prefetch_related(), id=id)
 
-    place_imgs = [img.picture.url for img in place.images.all().order_by('-position')]
+    place_imgs = [img.picture.url for img in place.images.all()]
 
     place_detail = {
         "title": place.title,
         "imgs": place_imgs,
-        "description_short": place.description_short,
-        "description_long": place.description_long,
+        "short_description": place.short_description,
+        "long_description": place.long_description,
         "coordinates": {
             "lng": place.lon,
             "lat": place.lat
         }
     }
 
-    return HttpResponse(
-        JsonResponse(
-            place_detail,
-            safe=False,
-            json_dumps_params={'ensure_ascii': False, 'indent': 2}
-        ),
-        content_type="application/json"
+    return JsonResponse(
+        place_detail,
+        safe=False,
+        json_dumps_params={'ensure_ascii': False, 'indent': 2}
     )

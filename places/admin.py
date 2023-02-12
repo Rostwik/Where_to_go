@@ -14,10 +14,12 @@ class PlaceInline(SortableInlineAdminMixin, admin.TabularInline):
     def get_preview(self, obj):
         url = obj.picture.url
         height = obj.picture.height
-        if height > 200:
-            height = 200
+        width = obj.picture.width
+        max_height = 200
+        max_width = width / (height / max_height)
+        print(max_width, max_height)
 
-        return format_html('<img src="{}" width="auto" height="{}"/>', url, height)
+        return format_html('<img src="{}" width="{}" max-height="200"/>', url, max_width)
 
 
 @admin.register(Place)
