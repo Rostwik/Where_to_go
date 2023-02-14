@@ -27,7 +27,7 @@ The test data is taken from the KudaGo website.
     
 
 # For developers
-## Installing
+## Installation
 
 To get started go to terminal(mac os) or CMD (Windows)
 - create virtualenv, [See example](https://python-scripts.com/virtualenv)

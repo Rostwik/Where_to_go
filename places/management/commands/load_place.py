@@ -1,19 +1,19 @@
 from django.core.files.base import ContentFile
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 import requests
 
 from places.models import Place, Image
 
 
 class Command(BaseCommand):
-    help = 'Closes the specified poll for voting'
+    help = 'The function of adding a new attraction to the map'
 
     def add_arguments(self, parser):
-        parser.add_argument('json_url', nargs='+', type=str)
+        parser.add_argument('json_url', nargs='?', type=str)
 
     def handle(self, *args, **options):
 
-        url = options['json_url'][0]
+        url = options['json_url']
         response = requests.get(url)
         response.raise_for_status()
         response = response.json()
@@ -32,12 +32,12 @@ class Command(BaseCommand):
             if not created and obj:
                 obj.images.all().delete()
 
-            for url in response['imgs']:
+            for img_number, url in enumerate(response['imgs']):
                 response = requests.get(url)
                 response.raise_for_status()
                 Image.objects.create(
                     place=obj,
-                    picture=ContentFile(response.content, 'new_place')
+                    picture=ContentFile(response.content, str(img_number))
                 )
 
         except Place.MultipleObjectsReturned:
